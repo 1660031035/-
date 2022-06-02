@@ -1,0 +1,26 @@
+// 嵌套语法 + &父选择器 + 变量 + mixin + 模块
+// 3. $变量名: 样式
+// mixins 代码块复用 例: 清除浮动
+@import './base.scss';
+#app {
+  .main-container {
+    min-height: 100%;
+    transition: margin-left .28s;
+  }
+}
+div {
+  // 1. 嵌套
+  h1 {
+    // 使用变量
+    color: $color;
+    // 使用mixins @include mixin名称
+    @include clearfix
+  }
+  a {
+    color: $color;
+    // 2. &: 父选择器
+    &:hover {
+      color: blue;
+    }
+  }
+}
