@@ -182,7 +182,7 @@ $cursor: #fff;
 
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.7); // 输入登录表单的背景色
     border-radius: 5px;
     color: #454545;
   }
@@ -259,12 +259,6 @@ $light_gray: #eee;
     line-height: 32px;
     font-size: 24px;
   }
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.7); // 输入登录表单的背景色
-    border-radius: 5px;
-    color: #454545;
-}
   .el-form-item__error {
 	color: #fff
 }
