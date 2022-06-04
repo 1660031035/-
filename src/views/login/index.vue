@@ -22,7 +22,7 @@
         <el-input
           ref="mobile"
           v-model="loginForm.mobile"
-          placeholder="Username"
+          placeholder="请输入手机号"
           name="mobile"
           type="text"
           tabindex="1"
@@ -39,7 +39,7 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="Password"
+          placeholder="请输入密码"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -70,33 +70,36 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+import { validUserMobile } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data () {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+    const validateUserMobile = (rule, value, callback) => {
+      if (!validUserMobile(value)) {
+        callback(new Error('请输入正确的手机号'))
       } else {
         callback()
       }
     }
-    const validatePassword = (rule, value, callback) => {
+    /* const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {
         callback()
       }
-    }
+    } */
     return {
       loginForm: {
-        mobile: 'admin',
+        mobile: '13800000002',
         password: '111111'
       },
       loginRules: {
-        mobile: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        // 手机号校验 required: true,必填项,trigger: 'blur',触发方式,validateUsername 自定义校验函数
+        mobile: [{ required: true, trigger: 'blur', validator: validateUserMobile }],
+        password: [{ required: true, trigger: 'blur', message: '请输入密码' },
+        { min: 6, max: 16, message: '密码长度在6~16位之间', trigger: 'blur'}
+        ]
       },
       loading: false,
       passwordType: 'password',
