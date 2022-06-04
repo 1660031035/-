@@ -15,15 +15,15 @@
         </h3>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="mobile">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          ref="username"
-          v-model="loginForm.username"
+          ref="mobile"
+          v-model="loginForm.mobile"
           placeholder="Username"
-          name="username"
+          name="mobile"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -91,11 +91,11 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
+        mobile: 'admin',
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        mobile: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
@@ -186,6 +186,10 @@ $cursor: #fff;
     border-radius: 5px;
     color: #454545;
   }
+
+  .el-form-item__error {
+	color: #fff
+}
 }
 </style>
 
@@ -259,8 +263,6 @@ $light_gray: #eee;
     line-height: 32px;
     font-size: 24px;
   }
-  .el-form-item__error {
-	color: #fff
-}
+  
 }
 </style>
