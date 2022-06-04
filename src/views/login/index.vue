@@ -70,8 +70,9 @@
 </template>
 
 <script>
+// 登录功能: 设置基地址和最长等待时间 + 对axios登录功能进行封装
 import { validUserMobile } from '@/utils/validate'
-
+import { login } from '@/api/user'
 export default {
   name: 'Login',
   data () {
@@ -92,7 +93,7 @@ export default {
     return {
       loginForm: {
         mobile: '13800000002',
-        password: '111111'
+        password: '123456'
       },
       loginRules: {
         // 手机号校验 required: true,必填项,trigger: 'blur',触发方式,validateUsername 自定义校验函数
@@ -125,17 +126,23 @@ export default {
         this.$refs.password.focus()
       })
     },
+    async doLogin() {
+      try {
+        const res = login(this.loginForm)
+        console.log(res)
+      } catch {
+
+      }
+    },
     handleLogin () {
+      // 手动兜底校验
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          // 通过表单校验
+          // 调用api 
+          this.doLogin()
         } else {
+          // 校验失败
           console.log('error submit!!')
           return false
         }
@@ -165,7 +172,8 @@ $cursor: #fff;
     display: inline-block;
     height: 47px;
     width: 85%;
-
+    -webkit-box-shadow: none;
+    box-shadow: none;
     input {
       background: transparent;
       border: 0px;

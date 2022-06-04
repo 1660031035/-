@@ -24,7 +24,17 @@
 // }
 
 import request from '@/utils/request'
+/**
+ * 用户登录
+ * @param {mobile, password} data 登录的用户信息
+ * @returns 登录的结果
+ */
 export function login(data) {
+  return request({
+      url: '/api/sys/login',
+      method: 'post',
+      data
+    })
 }
 export function getInfo(token) {
 }
