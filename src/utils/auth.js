@@ -2,7 +2,7 @@
 
 import Cookies from 'js-cookie'
 
-const TokenKey = 'vue_admin_template_token'
+const TokenKey = 'vue-hr-lh'
 
 export function getToken() {
   return Cookies.get(TokenKey)
