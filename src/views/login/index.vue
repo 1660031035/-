@@ -96,7 +96,8 @@ export default {
         password: '123456'
       },
       loginRules: {
-        // 手机号校验 required: true,必填项,trigger: 'blur',触发方式,validateUsername 自定义校验函数
+        // 手机号校验 required: true,必填项,trigger: 'blur',触发方式,
+        //validateUsername 自定义校验函数
         mobile: [{ required: true, trigger: 'blur', validator: validateUserMobile }],
         password: [{ required: true, trigger: 'blur', message: '请输入密码' },
         { min: 6, max: 16, message: '密码长度在6~16位之间', trigger: 'blur'}
@@ -135,7 +136,6 @@ export default {
       } catch(err) {
         console.log(err)
         console.log('登录失败')
-
       }
     },
     handleLogin () {

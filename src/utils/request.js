@@ -91,12 +91,12 @@ import axios from 'axios'
 const service = axios.create(
   {
     // 基地址和最长等待时间
-    
     // baseURL: 'http://ihrm-java.itheima.net', // 设置axios请求的基础的基础地址
     baseURL: 'http://localhost:8080',
     timeout: 5000 // 定义5秒超时
   }
-) // 创建一个axios的实例
+) 
+// 创建一个axios的实例
 // service.interceptors.request.use() // 请求拦截器
 // 添加请求拦截器
 // 导入store
