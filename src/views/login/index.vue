@@ -129,8 +129,11 @@ export default {
     async doLogin() {
       try {
         const res = login(this.loginForm)
+        console.log('登录成功')
         console.log(res)
-      } catch {
+      } catch(err) {
+        console.log(err)
+        console.log('登录失败')
 
       }
     },

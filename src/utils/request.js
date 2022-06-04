@@ -97,4 +97,18 @@ const service = axios.create(
 ) // 创建一个axios的实例
 // service.interceptors.request.use() // 请求拦截器
 // service.interceptors.response.use() // 响应拦截器
+// 添加响应拦截器
+service.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  // 1. 判断是否操作成功
+  if(response.data.success === 'false') {
+    // 本次操作没有成功, 抛出错误
+    return Promise.reject(new Error('请求错误'));
+  }
+  console.log(response.data)
+  return response.data;
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
 export default service // 导出axios实例
