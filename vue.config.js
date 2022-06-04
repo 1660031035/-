@@ -37,6 +37,13 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    proxy: {
+      // 如果请求地址以/api打头,就出触发代理机制
+      // http://localhost:9588/api/login -> http://localhost:3000/api/login
+      '/api': {
+        target: 'http://192.168.71.189:3000' // 我们要代理的真实接口地址
+      }
+    }
     // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
