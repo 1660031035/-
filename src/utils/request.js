@@ -98,6 +98,26 @@ const service = axios.create(
   }
 ) // 创建一个axios的实例
 // service.interceptors.request.use() // 请求拦截器
+// 添加请求拦截器
+// 导入store
+import store from '@/store'
+service.interceptors.request.use(
+  function (config) {
+      // 在发送请求之前进行操作
+      // 如果有token,就设置在请求头上
+      // console.log(store)
+      const token = store.state.user.token
+      if(token) {
+        console.log(config)
+        config.headers.Authorization = `Bearer ${token}`
+      }
+      return config;
+  },
+  function (error) {
+      // 对请求错误进行操作
+      return Promise.reject(error);
+  }
+);
 // service.interceptors.response.use() // 响应拦截器
 // 添加响应拦截器
 service.interceptors.response.use(function (response) {
