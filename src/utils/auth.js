@@ -1,3 +1,5 @@
+// cookie localstorage 都可以做持久化
+
 import Cookies from 'js-cookie'
 
 const TokenKey = 'vue_admin_template_token'
