@@ -128,9 +128,10 @@ export default {
     },
     async doLogin() {
       try {
-        const res = login(this.loginForm)
-        console.log('登录成功')
-        console.log(res)
+        // 通过表单校验
+        const res = await login(this.loginForm)
+        // 带命名空间的mutation
+        this.$store.commit('user/setToken',res.data)
       } catch(err) {
         console.log(err)
         console.log('登录失败')
