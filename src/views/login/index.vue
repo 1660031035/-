@@ -127,17 +127,19 @@ export default {
         this.$refs.password.focus()
       })
     },
-    doLogin() {
+    async  doLogin() {
       try {
         // 通过表单校验
         // const res = await login(this.loginForm)
         // 带命名空间的mutation
         // this.$store.commit('user/setToken',res.data)
         // 在组件中调用actions
-        this.$store.dispatch('user/userLogin', this.loginForm)
+        await  this.$store.dispatch('user/userLogin', this.loginForm)
+        // 跳转主页
+        this.$router.push('/')
       } catch(err) {
         console.log(err)
-        console.log('登录失败')
+        alert('登录失败')
       }
     },
     handleLogin () {
