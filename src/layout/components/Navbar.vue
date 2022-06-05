@@ -9,13 +9,13 @@
   <el-dropdown class="avatar-container" trigger="click">
     <div class="avatar-wrapper">
       <img src="@/assets/common/bigUserHeader.png" class="user-avatar">
-      <span class="name">管理员</span>
+      <span class="name">{{ userInfo.username }}</span>
       <i class="el-icon-caret-bottom" style="color:#fff" />
     </div>
     <el-dropdown-menu slot="dropdown" class="user-dropdown">
       <router-link to="/">
         <el-dropdown-item>
-          首页
+          首页 
         </el-dropdown-item>
       </router-link>
       <a target="_blank" href="https://gitee.com/shuiruohanyu/hrsaas53">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
@@ -43,6 +43,7 @@ export default {
     Hamburger
   },
   computed: {
+    ...mapState('user', ['userInfo']),
     ...mapGetters([
       'sidebar',
       'avatar'

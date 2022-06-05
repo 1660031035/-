@@ -29,12 +29,20 @@
  * @returns 登录的结果
  */
 import request from '@/utils/request'
+// 用户登录
 export function login(data) {
   return request({
       url: '/api/sys/login',
       method: 'post',
       data
     })
+}
+// 获取用户信息
+export function getProfile() {
+  return request({
+    url: '/api/sys/profile',
+    method: 'post',
+  })
 }
 export function getInfo(token) {
 }

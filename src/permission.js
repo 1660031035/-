@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css' // progress bar style
 // NProgress.done()  // 进度条结束
 // 白名单数组 白名单: 不需要token就可直接访问的页面
 const whiteList = ['/login', '/404']
-router.beforeEach((to, form, next) => {
+router.beforeEach(async (to, form, next) => {
   // 获取token
   // console.log(store)
   // 启动进度条
@@ -21,9 +21,12 @@ router.beforeEach((to, form, next) => {
     if(whiteList.includes(to.path)) {
       // 是就放行到主页
       next('/')
-      console.log('你已经登录,不能返回登录页')
+      // console.log('你已经登录,不能返回登录页')
+      
       NProgress.done()
     } else {
+      // 发请求拿信息,调用action
+      await store.dispatch('user/getProfile')
       next()
     }
   } else {
