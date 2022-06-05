@@ -1,5 +1,35 @@
-// import router from './router'
-// import store from './store'
+import router from './router';
+import store from './store'
+router.beforeEach((to, form, next) => {
+  // 获取token
+  console.log(store)
+  const token = store.state.user.token
+  // 判断是否有token 
+  if(token) {
+    // 如果有token 
+    // 是否去登录页
+    if(to.path === '/login') {
+      // 是就放行到主页
+      next('/')
+      console.log('你已经登录,不能返回登录页')
+    } else {
+      next()
+    }
+  } else {
+    // 没有token
+    // 是否去白名单
+    if(to.path === '/login') {
+      // 是 放行
+      next()
+    } else {
+      // 否,去登录页
+      next('/login')
+    }
+  }
+  // console.log('去', to.path)
+  // console.log('来自', form.path)
+  // next()
+})
 // import { Message } from 'element-ui'
 // import NProgress from 'nprogress' // progress bar
 // import 'nprogress/nprogress.css' // progress bar style
