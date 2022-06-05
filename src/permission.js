@@ -1,14 +1,16 @@
 import router from './router';
 import store from './store'
+// 白名单数组 白名单: 不需要token就可直接访问的页面
+const whiteList = ['/login', '/404']
 router.beforeEach((to, form, next) => {
   // 获取token
-  console.log(store)
+  // console.log(store)
   const token = store.state.user.token
   // 判断是否有token 
   if(token) {
     // 如果有token 
     // 是否去登录页
-    if(to.path === '/login') {
+    if(whiteList.includes(to.path)) {
       // 是就放行到主页
       next('/')
       console.log('你已经登录,不能返回登录页')
@@ -17,9 +19,10 @@ router.beforeEach((to, form, next) => {
     }
   } else {
     // 没有token
-    // 是否去白名单
-    if(to.path === '/login') {
+    // 去的页面是否是白名单
+    if(whiteList.includes(to.path)) {
       // 是 放行
+      console.log('没有token')
       next()
     } else {
       // 否,去登录页
