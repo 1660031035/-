@@ -61,8 +61,8 @@ export default {
         type: 'warning'}).then(async ()=> {
           // 调用清空用户信息函数
           await this.$store.dispatch('user/logout')
-          // 跳转登录页
-          this.$router.push('/login?return_url=' + this.$route.fullPath)
+          // 跳转登录页 encodeURIComponent对字符进行转码
+          this.$router.push('/login?return_url=' + encodeURIComponent(this.$route.fullPath))
         }).catch(err => err)
     }
   }
