@@ -1,10 +1,18 @@
 import router from './router';
 import store from './store'
+// 导入进度条跳转
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
+// 两个api
+// NProgress.start() // 启动进度条
+// NProgress.done()  // 进度条结束
 // 白名单数组 白名单: 不需要token就可直接访问的页面
 const whiteList = ['/login', '/404']
 router.beforeEach((to, form, next) => {
   // 获取token
   // console.log(store)
+  // 启动进度条
+  NProgress.start()
   const token = store.state.user.token
   // 判断是否有token 
   if(token) {
@@ -14,6 +22,7 @@ router.beforeEach((to, form, next) => {
       // 是就放行到主页
       next('/')
       console.log('你已经登录,不能返回登录页')
+      NProgress.done()
     } else {
       next()
     }
@@ -24,6 +33,7 @@ router.beforeEach((to, form, next) => {
       // 是 放行
       console.log('没有token')
       next()
+      NProgress.done()
     } else {
       // 否,去登录页
       next('/login')
@@ -33,9 +43,12 @@ router.beforeEach((to, form, next) => {
   // console.log('来自', form.path)
   // next()
 })
+router.afterEach(() => {
+  // finish progress bar
+  NProgress.done()
+  console.log()
+})
 // import { Message } from 'element-ui'
-// import NProgress from 'nprogress' // progress bar
-// import 'nprogress/nprogress.css' // progress bar style
 // import { getToken } from '@/utils/auth' // get token from cookie
 // import getPageTitle from '@/utils/get-page-title'
 
@@ -91,7 +104,3 @@ router.beforeEach((to, form, next) => {
 //   }
 // })
 
-// router.afterEach(() => {
-//   // finish progress bar
-//   NProgress.done()
-// })
