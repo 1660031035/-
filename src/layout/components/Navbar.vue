@@ -53,9 +53,17 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    logout() {
+      // 弹层询问，是否退出
+      this.$confirm('你确定要离开吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'}).then(async ()=> {
+          // 调用清空用户信息函数
+          await this.$store.dispatch('user/logout')
+          // 跳转登录页
+          this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+        }).catch(err => err)
     }
   }
 }

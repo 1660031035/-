@@ -45,7 +45,12 @@ export default {
       const obj = {...res.data, ...resInfo.data}
       console.log('getProfile', obj)
       context.commit('setUserInfo', obj)
-        },
+    },
+    logout(context) {
+      // 清空token和用户信息
+      context.commit('setToken', '')
+      context.commit('setUserInfo', {})
+    }
     
   },
   getters: {}
