@@ -1,4 +1,4 @@
-import { login, getProfile } from "@/api/user"
+import { login, getProfile, getUserInfo} from "@/api/user"
 import { getToken, setToken} from "@/utils/auth"
 
 export default {
@@ -33,12 +33,20 @@ export default {
       console.log(res.data) // token
       context.commit('setToken', res.data)
     },
+    // 用户信息
+    // 用户信息-包含头像
     async getProfile(context) {
       const res = await getProfile()
       // 调用mutation函数
       context.commit('setUserInfo', res.data)
-      console.log('getProfile', res)
-        }
+      
+      const resInfo = await getUserInfo(res.data.userId)
+      console.log('获取详情', resInfo)
+      const obj = {...res.data, ...resInfo.data}
+      console.log('getProfile', obj)
+      context.commit('setUserInfo', obj)
+        },
+    
   },
   getters: {}
 }

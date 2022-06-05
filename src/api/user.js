@@ -44,6 +44,13 @@ export function getProfile() {
     method: 'post',
   })
 }
+// 获取用户信息-包含头像
+export function getUserInfo(id) {
+  return request({
+    url: '/api/sys/user/' + id,
+    method: 'get',
+  })
+}
 export function getInfo(token) {
 }
 export function logout() {
