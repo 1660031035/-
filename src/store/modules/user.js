@@ -1,4 +1,5 @@
-import { getToken, setToken } from "@/utils/auth"
+import { login } from "@/api/user"
+import { getToken, setToken} from "@/utils/auth"
 
 export default {
   namespaced: true,
@@ -17,7 +18,14 @@ export default {
       setToken(newToken)
     }
   },
-  actions: {},
+  actions: {
+    async userLogin(context, data) {
+      // console.log(context,data)
+      const res = await login(data)
+      console.log(res.data) // token
+      context.commit('setToken', res.data)
+    }
+  },
   getters: {}
 }
 

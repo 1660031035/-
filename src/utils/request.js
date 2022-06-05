@@ -126,9 +126,10 @@ service.interceptors.response.use(function (response) {
   if(response.data.success === 'false') {
     // 本次操作没有成功, 抛出错误
     return Promise.reject(new Error('请求错误'));
+  } else {
+    return response.data;
   }
-  console.log(response.data)
-  return response.data;
+  
 }, function (error) {
   // 对响应错误做点什么
   return Promise.reject(error);
