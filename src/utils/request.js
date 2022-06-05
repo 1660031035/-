@@ -88,6 +88,8 @@
 
 // 导出一个axios的实例  而且这个实例要有请求拦截器 响应拦截器
 import axios from 'axios'
+// 导入路由
+import router from '@/router'
 const service = axios.create(
   {
     // 基地址和最长等待时间
@@ -132,6 +134,13 @@ service.interceptors.response.use(function (response) {
   
 }, function (error) {
   // 对响应错误做点什么
+  // token超时 删除本地数据 回到登录页
+  console.dir(error)
+  if(error.response.data.code === 10002) {
+    store.dispatch('user/logout')
+    // 跳转登录页
+    router.push('/login?return_url=' + encodeURIComponent(router.currentRoute.fullPath))
+  }
   return Promise.reject(error);
 });
 export default service // 导出axios实例
