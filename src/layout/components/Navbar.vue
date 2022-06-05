@@ -62,7 +62,7 @@ export default {
           // 调用清空用户信息函数
           await this.$store.dispatch('user/logout')
           // 跳转登录页
-          this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+          this.$router.push('/login?return_url=' + this.$route.fullPath)
         }).catch(err => err)
     }
   }

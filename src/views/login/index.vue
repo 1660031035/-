@@ -135,8 +135,9 @@ export default {
         // this.$store.commit('user/setToken',res.data)
         // 在组件中调用actions
         await  this.$store.dispatch('user/userLogin', this.loginForm)
-        // 跳转主页
-        this.$router.push('/')
+        // 跳转主页 登录的时候返回之前的页面
+        const return_url = this.$route.query.return_url || '/'
+        this.$router.push(return_url)
       } catch(err) {
         console.log(err)
         alert('登录失败')
