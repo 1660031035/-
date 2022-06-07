@@ -24,10 +24,26 @@ import Layout from '@/layout'
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
  */
+// 引入多个动态路由模块
+import approvalsRouter from './modules/approvals'
+import departmentsRouter from './modules/departments'
+import employeesRouter from './modules/employees'
+import permissionRouter from './modules/permissions'
+import attendancesRouter from './modules/attendances'
+import salarysRouter from './modules/salarys'
+import settingRouter from './modules/settings'
+import socialRouter from './modules/social_securitys'
 // 动态路由表
 export const asyncRoutes = [
   // 后面补充八个配置
-  employeesRouter
+  approvalsRouter,
+  departmentsRouter,
+  employeesRouter,
+  permissionRouter,
+  attendancesRouter,
+  salarysRouter,
+  settingRouter,
+  socialRouter
 ]
 
 // 静态路由表，项目中每个用户都可以访问的功能
