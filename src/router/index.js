@@ -25,9 +25,93 @@ import Layout from '@/layout'
   }
  */
 // 动态路由表
-export const asyncRoutes = {
+export const asyncRoutes = [
   // 后面补充八个配置
-}
+  {
+    path: '/employees',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'employees',
+        component: () => import('@/views/employees/employees.vue'),
+        meta: { title: 'Employees', icon: 'employees' }
+      },
+    ]
+  },
+  {
+    path: '/departments',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'departments',
+        component: () => import('@/views/departments/departments.vue'),
+        meta: { title: 'departments', icon: 'departments' }
+      },
+    ]
+  },
+  {
+    path: '/settings',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'settings',
+        component: () => import('@/views/settings/settings.vue'),
+        meta: { title: 'settings', icon: 'settings' }
+      },
+    ]
+  },
+  {
+    path: '/salarys',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'salarys',
+        component: () => import('@/views/salarys/salarys.vue'),
+        meta: { title: 'salarys', icon: 'salarys' }
+      },
+    ]
+  },
+  {
+    path: '/social_securitys',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'social_securitys',
+        component: () => import('@/views/social_securitys/social_securitys.vue'),
+        meta: { title: 'social_securitys', icon: 'social_securitys' }
+      },
+    ]
+  },
+  {
+    path: '/attendances',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'attendances',
+        component: () => import('@/views/attendances/attendances.vue'),
+        meta: { title: 'attendances', icon: 'attendances' }
+      },
+    ]
+  },
+  {
+    path: '/approvals',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'approvals',
+        component: () => import('@/views/approvals/approvals.vue'),
+        meta: { title: 'approvals', icon: 'approvals' }
+      },
+    ]
+  },
+]
 
 // 静态路由表，项目中每个用户都可以访问的功能
 export const constantRoutes = [
@@ -62,7 +146,7 @@ export const constantRoutes = [
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: [constantRoutes, asyncRoutes]
+  routes: [...constantRoutes, ...asyncRoutes]
 })
 
 const router = createRouter()
