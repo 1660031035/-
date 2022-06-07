@@ -24,12 +24,12 @@ import Layout from '@/layout'
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
  */
+// 动态路由表
+export const asyncRoutes = {
+  // 后面补充八个配置
+}
 
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
+// 静态路由表，项目中每个用户都可以访问的功能
 export const constantRoutes = [
   {
     path: '/login',
@@ -62,7 +62,7 @@ export const constantRoutes = [
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
+  routes: [constantRoutes, asyncRoutes]
 })
 
 const router = createRouter()
