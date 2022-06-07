@@ -25,8 +25,13 @@ router.beforeEach(async (to, form, next) => {
       
       NProgress.done()
     } else {
-      // 发请求拿信息,调用action
-      await store.dispatch('user/getProfile')
+      // 判断是否有个人信息
+      const userInfo = store.state.user.userInfo
+      if(!userInfo.userId) {
+        // 如果没有个人信息就获取,有就放行
+        // 发请求拿信息,调用action
+        await store.dispatch('user/getProfile')
+      }
       next()
     }
   } else {
